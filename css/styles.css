@@ -156,7 +156,7 @@ html, body {
 
 
 .logo-image {
-  width: 100px;
+  width: 180px;
   margin-bottom: 20px;
 }
 
@@ -175,13 +175,63 @@ html, body {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .construction-container {
-    padding: 30px 20px;
-    /* On smaller screens, the max-height should still be managed by the parent's flexbox */
-    /* If max-height is still needed here for very specific scenarios, it should be relative to 100% */
+  .logo-image {
+    width: 150px;
+    margin-bottom: 10px;
+  }
+  
+  .construction-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  
+  .construction-subtitle {
+    font-size: 16px;
+    color: var(--subtext);
+    line-height: 1.6;
   }
 
-  .construction-title {
-    font-size: 28px;
-  }
+  .construction-container {
+  background: var(--container);
+  padding: 40px; /* Default padding for larger screens */
+  border-radius: 20px;
+
+  /* Max width and responsive width */
+  max-width: 600px;
+  width: 100%; /* Will take 100% of the available space within main-content's padding */
+
+  /* Set max-height relative to main-content's available space, NOT 100vh */
+  /* This prevents the box from being too tall and pushing upwards */
+  max-height: 100%; /* Allows it to take 100% of the height available from flexbox */
+
+  text-align: center;
+  transition: background 0.4s ease, color 0.4s ease;
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.08),
+    0 4px 6px rgba(0, 0, 0, 0.05);
+
+  min-width: 200px;
+  min-height: 100px;
+
+  overflow-y: auto; /* For internal scrolling if content exceeds max-height */
+}
+.main-content {
+  /* Ensure it fills the viewport and uses flexbox for centering */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Explicitly set to viewport width */
+  height: 100vh; /* Explicitly set to viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* This is what centers vertically */
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+  position: relative;
+  z-index: 1;
+  /* Add consistent padding to the main-content itself to create a safe zone */
+  padding: 40px; /* Applies 20px padding on all sides of the viewport */
+}
 }
